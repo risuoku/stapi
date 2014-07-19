@@ -79,10 +79,10 @@ class API(object):
       args = {'screen_name':screen_name, 'user_id':user_id, 'cursor':cursor}
     )
   
-  def list_timeline(self, owner_screen_name=None, slug=None, owner_id=None, list_id=None, since_id=None, max_id=None, count=None, include_rts=None):
+  def list_timeline(self, owner_screen_name=None, slug=None, owner_id=None, list_id=None, since_id=None, max_id=None, count=None, include_rts=None, page=None):
     return self._call(
       name = 'list_timeline',
-      args = {'owner_screen_name':owner_screen_name, 'slug':slug, 'owner_id':owner_id, 'list_id':list_id, 'since_id':since_id, 'max_id':max_id, 'count':count, 'include_rts':include_rts}
+      args = {'owner_screen_name':owner_screen_name, 'slug':slug, 'owner_id':owner_id, 'list_id':list_id, 'since_id':since_id, 'max_id':max_id, 'count':count, 'include_rts':include_rts, 'page':page}
     )
   
   def get_list(self, owner_screen_name=None, owner_id=None, slug=None, list_id=None):
@@ -126,7 +126,7 @@ class API(object):
         return r
       except tweepy.TweepError, e:
         if not self._rate_limit_exceeded(e.reason):
-          raise StError(e.reason)
+          raise e
         if self.count > len(self.api_list):
           raise StError('stapi rate limit exceeded!')
         self.logger.debug('switch api.. index:%s'%(self.index))
