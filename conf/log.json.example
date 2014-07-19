@@ -1,0 +1,5 @@
+{
+  "format":"%(asctime)s %(levelname)s %(message)s",
+  "level":"debug",
+  "filename":"stdout"
+}
