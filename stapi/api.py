@@ -4,7 +4,6 @@
 import tweepy
 import re, sys
 import logging
-import json
 from stapi.config import Config
 from stapi.error import StError
 from stapi.logger import Logger
