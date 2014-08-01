@@ -14,7 +14,6 @@ class API(object):
     self.logger = Logger()
 
     # mutable -----------
-    #self.api_list = [self._set_token(auth_info) for auth_info in auth_info_list]
     self.api_list = map(self._get_authorized_api, auth_info_list)
     self.index = 0
     self.count = 0
